@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  ### PHP-FPM ##############################################
+  php-fpm:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../:/var/www:cached
+    expose:
+      - "9000"

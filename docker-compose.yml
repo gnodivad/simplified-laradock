@@ -6,6 +6,21 @@ services:
     build:
       context: ./php-fpm
     volumes:
-      - ../:/var/www:cached
+      - ..:/var/www:cached
     expose:
       - "9000"
+
+  ### NGINX Server #########################################
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ..:/var/www:cached
+      - ./logs/nginx:/var/log/nginx
+      - ./nginx/sites:/etc/nginx/sites-available
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+    links:
+      - php-fpm

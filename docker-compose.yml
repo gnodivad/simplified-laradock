@@ -22,5 +22,3 @@ services:
       - "80:80"
     depends_on:
       - php-fpm
-    links:
-      - php-fpm

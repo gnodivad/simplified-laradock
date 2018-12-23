@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  mysql:
+    driver: "local"
+
 services:
   ### PHP-FPM ##############################################
   php-fpm:
@@ -22,3 +26,17 @@ services:
       - "80:80"
     depends_on:
       - php-fpm
+
+  ### MySQL ################################################
+  mysql:
+    build:
+      context: ./mysql
+    environment:
+      - MYSQL_DATABASE=default
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ~/.laradock/data/mysql:/var/lib/mysql
+    ports:
+      - "13306:3306"

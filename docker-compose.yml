@@ -6,6 +6,13 @@ volumes:
 
 services:
   ### PHP-FPM ##############################################
+  workspace:
+    build:
+      context: ./workspace
+    volumes:
+      - ..:/var/www:cached
+
+  ### PHP-FPM ##############################################
   php-fpm:
     build:
       context: ./php-fpm

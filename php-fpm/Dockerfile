@@ -5,6 +5,8 @@ COPY ./laravel.pool.conf /usr/local/etc/php-fpm.d/
 
 RUN usermod -u 1000 www-data
 
+RUN docker-php-ext-install bcmath
+
 WORKDIR /var/www
 
 CMD ["php-fpm"]

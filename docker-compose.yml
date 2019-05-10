@@ -3,6 +3,8 @@ version: "3"
 volumes:
   mysql:
     driver: "local"
+  redis:
+    driver: "local"
 
 services:
   ### PHP-FPM ##############################################
@@ -47,3 +49,12 @@ services:
       - ~/.laradock/data/mysql:/var/lib/mysql
     ports:
       - "13306:3306"
+
+  ### Redis ################################################
+  redis:
+    build: ./redis
+    volumes:
+      - ~/.laradock/data/redis:/data
+    ports:
+      - "6379:6379"
+
